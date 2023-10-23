@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Makaan - Real Estate HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href=" {% static  'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href=" {% static  'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href=" {% static  'css/bootstrap.min.css' %}" rel="stylesheet">
+
+   
+    <link href=" {% static  'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar  navbar-expand-lg bg-white d-flex justify-content-center navbar-light py-0 px-4">
+                <a href="/" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img  class="img-fluid" src="/static/img/icon-housing.png" alt="Icon" style="width: 30px; height: 30px;">
+                    </div>
+                    <h1 class="m-0 text-primary">Makaan</h1>
+
+                </a>
+                           <a class=" btn btn-warning text-black " href="{% url 'add' %}">Saytga uy qoshish</a>
+                
+            </nav>
+        </div>
+
+
+
+
+
+
+
+        <!-- Property List Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-0 gx-5 align-items-end">
+
+                    <div class="text-center">
+                            <h1 id="vilo" class="mb-3 text-center"><span  class="text-primary"></span> uylari </h1>
+
+                    </div>
+
+                    
+                </div>
+
+<div class="tab-content mt-3">
+          
+ <div class="row g-4">
+    
+<div id="blogscard" style="display: flex ; justify-content: center; gap: 10px;" data-wow-delay="0.1s">
+
+
+{% for x in list2 %}
+
+<div  id="card{{x.id}}"  data-viloyat="{{x.voliyatingiz}}" class=" border border-2 border-primary property-item rounded overflow-hidden">
+    
+<center>
+    <a   href="{{x.id}}/" class="btn btn-primary">Ko'proq malumot olish</a>
+</center>
+    <div class="position-relative overflow-hidden">
+        <a style="position: relative;" href="{{x.id}}/">
+            <img style="width: 100%; height: 260px ; object-fit: contain; " class="img-fluid" src="/media//{{x.asosiy_rasm}}" alt="">
+        </a>
+  
+    </div>
+    <div class="p-4 pb-0">
+        <h5 class="text-primary mb-3">{{x.narhi}}-$</h5>
+        <a class="d-block h5 mb-2" href="{{x.id}}/">{{x.sarlavha}}</a>
+        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{x.voliyatingiz}} > {{x.manzil}}</p>
+    </div>
+    <div class="d-flex border-top">
+        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>{{x.kvadrati}} kvadrat</small>
+        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>{{x.necha_hona}} Hona</small>
+    </div><br>
+
+</div>
+
+{% endfor %}
+
+ </div></div></div></div>
+
+
+
+
+        
+<div>
+    <div style="visibility: hidden;" class="container-fluid bg-dark text-white-50 p-4" data-wow-delay="0.1s">
+        <div class=" text-center  mb-3 mb-md-0">
+        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.	 Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+        </div>
+    </div>
+</div>
+
+<div id="ddf" style="position: fixed; bottom: 0;" class="container-fluid bg-dark text-white-50 p-4" data-wow-delay="0.1s">
+    <div class=" text-center  mb-3 mb-md-0">
+    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.	 Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+    </div>
+</div>
+
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<script>
+
+'{% for x in list2 %}'
+
+    if(document.getElementById(`card{{x.id}}`).getAttribute('data-viloyat') != localStorage.getItem('viloyat')){
+        document.getElementById(`card{{x.id}}`).remove()
+    }else{
+    
+    }
+'{% endfor %}'
+    
+
+    if(document.getElementById('blogscard').children.length > 0){
+    
+    }
+    else{
+        document.getElementById('blogscard').innerHTML ='<h1 class="text-center text-danger">Bu viloyatda hali uy reklamasi mavjud emas </h1>'
+        document.getElementById('blogscard').style.width = '100%'
+    }
+    
+    document.getElementById('vilo').children[0].innerHTML = localStorage.getItem('viloyat')
+
+</script>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src=" {% static  'lib/wow/wow.min.js' %} "></script>
+    <script src=" {% static  'lib/easing/easing.min.js' %} "></script>
+    <script src=" {% static  'lib/waypoints/waypoints.min.js' %} "></script>
+    <script src=" {% static  'lib/owlcarousel/owl.carousel.min.js' %} "></script>
+    <!-- Template Javascript -->
+    <script src="/static/js/main.js"></script>
+    </body>
+    
+    </html>
